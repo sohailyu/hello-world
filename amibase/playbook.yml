@@ -1,0 +1,8 @@
+---
+
+- name: Create ami
+  hosts: all
+  become: yes
+  roles:
+    - ami
+    - htop

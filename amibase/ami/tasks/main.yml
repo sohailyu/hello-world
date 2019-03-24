@@ -1,0 +1,17 @@
+---
+# tasks file for ami
+#
+- name: Clearing old ansible repo
+  file: 
+    path: /tmp/aws.ansible
+    state: absent
+
+- name: Install base packages
+  yum: pkg={{item}} state=present
+  with_items:
+    - git
+
+- name: Add CloudWatch Agent
+  yum:
+    name: https://s3.amazonaws.com/amazoncloudwatch.agent/amazon_linux/amd64/latest/amazo-cloudwatch-agent.rpm
+    state: present
